@@ -1,0 +1,8 @@
+Note
+
+
+1. We cannot recognize the sentence with negative words like "no", "not", "nor"
+
+2. modify the stop words 
+
+3. Reconstruct the sentence with "do not" "should not" and etc to avoid categorize the neg-sentence into positive results.
