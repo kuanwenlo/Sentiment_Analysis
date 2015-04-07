@@ -3,10 +3,9 @@ from stemming.porter2 import stem
 import nltk
 from nltk.corpus import stopwords
 
-def makeDict(f):
-	
+def makeDict():
+	f = open("subjclueslen1-HLTEMNLP05.tff", 'r')
 	text = f.readlines()
-
 	dictionary = {}
 
 	for line in text:
@@ -23,3 +22,6 @@ def makeDict(f):
 
 
 	return dictionary
+
+
+makeDict()
