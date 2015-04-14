@@ -13,8 +13,14 @@ def featureSelect(text, dictionary):
 	negAdj = 0
 	negAdv = 0
 	negAny = 0 
+	neuNoun = 0
+	neuVerb = 0
+	neuAdj = 0
+	neuAdv = 0
+	neuAny = 0 
 	for line in filtered_lines:
-		filtered_words = [w for w in line.split() if not w in stop]
+		#filtered_words = [w for w in line.split() if not w in stop]
+		filtered_words = [w for w in line.split() ]
 		neg = False
 		for w in filtered_words:
 			if w in negTag:
@@ -25,9 +31,9 @@ def featureSelect(text, dictionary):
 				#print w 
 				fact = dictionary.get(w)
 				if fact[0] == "weaksubj" :
-					amp = 1
+					amp = 0.1
 				elif fact[0] == "strongsubj" :
-					amp = 3
+					amp = 0.1
 				if (fact[4] == "positive" and neg == False) or ((fact[4] =='negative') and neg):
 					
 					if fact[2] == "noun" :
@@ -52,4 +58,16 @@ def featureSelect(text, dictionary):
 						negAdv += amp
 					elif fact[2] == "anypos":
 						negAny += amp
-	return [posNoun, posVerb, posAdj, posAdv, posAny, negNoun, negVerb, negAdj, negAdv, negAny]
+				elif (fact[4] == "neutral"):
+					if fact[2] == "noun" :
+						neuNoun += amp
+					elif fact[2] == "verb" :
+						neuVerb += amp
+					elif fact[2] == "adj" :
+						neuAdj += amp
+					elif fact[2] == "adverb" :
+						neuAdv += amp
+					elif fact[2] == "anypos":
+						neuAny += amp
+
+	return [posNoun, posVerb, posAdj, posAdv, posAny, negNoun, negVerb, negAdj, negAdv, negAny, neuNoun, neuVerb, neuAdj, neuAdv, neuAny]
