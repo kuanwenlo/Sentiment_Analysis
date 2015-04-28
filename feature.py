@@ -18,11 +18,13 @@ def featureSelect(text, dictionary):
 	neuAdj = 0
 	neuAdv = 0
 	neuAny = 0 
+	wordCount = 0
 	for line in filtered_lines:
 		#filtered_words = [w for w in line.split() if not w in stop]
 		filtered_words = [w for w in line.split() ]
 		neg = False
 		for w in filtered_words:
+			wordCount = wordCount + 1
 			if w in negTag:
 				neg = True
 			if(dictionary.get(w) == None):
@@ -31,9 +33,9 @@ def featureSelect(text, dictionary):
 				#print w 
 				fact = dictionary.get(w)
 				if fact[0] == "weaksubj" :
-					amp = 0.1
+					amp = 0.2
 				elif fact[0] == "strongsubj" :
-					amp = 0.1
+					amp = 0.3
 				if (fact[4] == "positive" and neg == False) or ((fact[4] =='negative') and neg):
 					
 					if fact[2] == "noun" :

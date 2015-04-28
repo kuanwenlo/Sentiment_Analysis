@@ -51,7 +51,7 @@ for text in trainingTexts:
 for text in test_texts:
 	test_datum = feature.featureSelect(text, dictionary)
 	test_data.append(test_datum)
-	print test_datum
+	#print test_datum
 
 m = svm_train(trainingTarget, trainingData)
 
